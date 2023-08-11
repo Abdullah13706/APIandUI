@@ -1,4 +1,4 @@
-package com.vytrack.utilities;
+package com.apiui.utilities;
 
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
