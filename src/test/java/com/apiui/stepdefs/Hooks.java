@@ -1,7 +1,9 @@
-package com.vytrack.step_definitions;
+package com.apiui.stepdefs;
 
-import com.vytrack.utilities.DBUtils;
-import com.vytrack.utilities.Driver;
+
+import com.apiui.utilities.ConfigurationReader;
+import com.apiui.utilities.DBUtils;
+import com.apiui.utilities.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -10,6 +12,8 @@ import org.openqa.selenium.TakesScreenshot;
 
 import java.util.concurrent.TimeUnit;
 
+import static io.restassured.RestAssured.baseURI;
+
 public class Hooks {
 
     @Before
@@ -17,6 +21,8 @@ public class Hooks {
         System.out.println("\tthis is coming from BEFORE");
         Driver.get().manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         Driver.get().manage().window().maximize();
+        baseURI= ConfigurationReader.get("api_url");
+
     }
 
     @After
