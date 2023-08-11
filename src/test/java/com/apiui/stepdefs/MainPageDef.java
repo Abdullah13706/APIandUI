@@ -1,35 +1,46 @@
 package com.apiui.stepdefs;
 
+import com.apiui.pages.MainPage;
+import com.apiui.utilities.BrowserUtils;
+import com.apiui.utilities.ConfigurationReader;
+import com.apiui.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 
-public class MainPage {
+import javax.print.DocFlavor;
+
+public class MainPageDef {
+    MainPage mainPage = new MainPage();
     @Given("the user on the main page")
     public void the_user_on_the_main_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        Driver.get().get(ConfigurationReader.get("FakeRESTApi.Web"));
+        BrowserUtils.waitForPageToLoad(10);
     }
 
-    @When("the title equal to FakeRESTApi.Web V1")
-    public void the_title_equal_to_fake_rest_api_web_v1() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @When("the user click Activities button")
+    public void the_user_click_activities_button() {
+        if (!mainPage.activitiesButton.isSelected()) {
+            mainPage.activitiesButton.click();
+        }
     }
 
-    @When("the version equal to V1 and OAS3")
-    public void the_version_equal_to_v1_and_oas3() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @And("verify first Get button and click it")
+    public void verifyFirstGetButtonAndClickIt() {
+        Assert.assertEquals("GET",mainPage.getButton1.getText());
+        mainPage.getButton1.click();
     }
 
-    @Then("the url equal to \\/swagger\\/v1\\/swagger.json")
-    public void the_url_equal_to_swagger_v1_swagger_json() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @Then("the code url equal to {string}")
+    public void the_code_url_equal_to(String string) {
+        Assert.assertEquals(string,mainPage.statusCode.getText());
+
     }
 
-    @Then("the url equal to \\/swagger\\/v{int}\\/swagger.json")
-    public void theUrlEqualToSwaggerVSwaggerJson(int arg0) {
-    }
+
+
+
 }
